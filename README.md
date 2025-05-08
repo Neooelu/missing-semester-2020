@@ -286,6 +286,9 @@ zl@LAPTOP-ZL ~> pstree -ap | grep fish
 
 #### open file before "sudo echo"
 
+大部分情况下以一般用户来使用系统会遇到这样那样的限制，但shell内定了一个超级身份叫做root，拥有任何权限。
+我们一般用 `sudo` 命令来以root权限运行各样的软件
+
 ```bash
 $ cd /sys/class/backlight/thinkpad_screen
 $ sudo echo 3 > brightness
@@ -301,7 +304,14 @@ open: Permission denied
 
 shell 会在执行 sudo echo 之前就进行打开文件进行写入。
 
-解决方法为：
+解决方法有两种
+
+方法1
+
+使用`sudo su` 进入root身份，输入`exit`退出
+
+
+方法2
 
 ```bash
 $ echo 3 | sudo tee brightness
@@ -319,6 +329,14 @@ Hello world
 zl@LAPTOP-ZL ~/rust_learn> cat test.rs
 Hello world
 ```
+#### 打开文件 xdg-open
+
+目前为止只说了如何查找文件，但现在可以使用`xdg-open`来打开文件。
+
+注意，在macOS使用`open`来打开
+
+
+
 
 ### 2. shell tools and scripting
 
