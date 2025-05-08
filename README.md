@@ -120,9 +120,13 @@ Lecture Homepage: https://missing.csail.mit.edu/
 
 #### cd ~ cd -
 
+
 `cd ~` 命令返回 `/home`
 
 `cd -` 命令可以在当前目录和上一个目录之前来回切换
+
+这边有两个特殊的字符串`..`表示上一级目录路径和`.`表示当前路径
+对应用法诸如`cd ..` 进入上一级路径
 
 ```bash
 zl@LAPTOP-ZL ~> pwd
@@ -138,6 +142,7 @@ zl@LAPTOP-ZL ~> pwd
 ```
 
 #### ls -l
+
 
 ```
 zl@LAPTOP-ZL ~/rust_learn> ls -l
@@ -158,25 +163,49 @@ drwxrwxrwx 1 zl   zl      4096 Sep 17 23:20 structure/
 drwxrwxrwx 1 zl   zl      4096 Sep 12 14:42 the_slice_type/
 drwxrwxrwx 1 zl   zl      4096 Sep  9 09:05 variables/
 ```
+windows 系统中则是使用 `dir`
+
+下面对第一列进行讲解：
 
 1. 首字母 d 表示是一个 directory
 2. 前三个字母组，表示 owner of the file 的权限
 3. 中间三个字母组，表示 group of the file 的权限
 4. 最后三个字母组，表示 anyone else 的权限
+5. 三个字母的意思：read, write, execute。
+6. 以上的任何字母中，被-替换则表示没有对应的权限。
 
 - 后边的第一个 zl 表示 owner，第二个 zl 表示 group。
 
-- 三个字母的意思：read, write, execute。
+#### 趁手的小命令
+`rm` remove，移除文件，但不能输入整个文件夹。这是因为`rm`命令默认非递归（recursive）
+
+`rm -r` 用于递归式的移除文件夹里面的所有文件
+
+`mkdir` making dictionary. 创建空文件夹。
+
+`man` manual. 将其他的环境变量用作为`argument`。可以获取对应环境变量的说明书。非常好用
 
 #### rmdir
 
 只当文件夹为空的时候才能删除文件夹
 
-#### ctrl + l 
+#### ctrl + L
 
 or command `clear`
 
 clean the terminal
+
+#### 改变输入输出的方式
+在Shell 中，一般我们用键盘作为输入方式，用终端作为输出方式。我们称之为 stream 流
+
+我们可以使用`<`改变出输入，用`>`改变输出。 注意，`>>`的效果是拓写(append)
+
+```bash
+(base) coco@Neooelu:~/code/missing semester$ echo hello > hello.txt
+
+```
+上述输入会在当前目录生成一个hello.txt，包含hello的文本内容。
+
 
 #### cat 
 
@@ -214,7 +243,7 @@ fn main() {
 }
 ```
 
-#### | pipe character
+#### | pipe character 管道符
 
 将左侧的程序的输出当作右侧程序的输入。
 
