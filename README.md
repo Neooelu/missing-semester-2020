@@ -8,9 +8,10 @@ Lecture Homepage: https://missing.csail.mit.edu/
         - [ls -l](#ls--l)
         - [rmdir](#rmdir)
         - [ctrl + l](#ctrl--l)
-        - [cat](#cat)
-        - [> >> redirection](#--redirection)
-        - [| pipe character](#-pipe-character)
+        - [cat 读取命令](#cat-读取文件)
+        - [改变输入输出的方式](#改变输入输出的方式)
+            - [> >> redirection](#--redirection)
+            - [| pipe character 管道符](#-pipe-character-管道符)
         - [open file before "sudo echo"](#open-file-before-sudo-echo)
         - [tee](#tee)
     - [2. shell tools and scripting](#2-shell-tools-and-scripting)
@@ -195,19 +196,7 @@ or command `clear`
 
 clean the terminal
 
-#### 改变输入输出的方式
-在Shell 中，一般我们用键盘作为输入方式，用终端作为输出方式。我们称之为 stream 流
-
-我们可以使用`<`改变出输入，用`>`改变输出。 注意，`>>`的效果是拓写(append)
-
-```bash
-(base) coco@Neooelu:~/code/missing semester$ echo hello > hello.txt
-
-```
-上述输入会在当前目录生成一个hello.txt，包含hello的文本内容。
-
-
-#### cat 
+#### cat 读取文件
 
 cat 支持的形式 `cat filename`, `cat < filename`：
 
@@ -222,7 +211,19 @@ fn main() {
 }
 ```
 
-#### > >> redirection
+#### 改变输入输出的方式
+在Shell 中，一般我们用键盘作为输入方式，用终端作为输出方式。我们称之为 stream 流
+
+我们可以使用`<`改变出输入，用`>`改变输出。 注意，`>>`的效果是拓写(append)
+
+```bash
+(base) coco@Neooelu:~/code/missing semester$ echo hello > hello.txt
+
+```
+上述输入会在当前目录生成一个hello.txt，包含hello的文本内容。
+
+
+##### > >> redirection
 
 - 单个 > 命令会 overwrite 文件
 - 双 >> 命令会在文件后 append
@@ -243,7 +244,7 @@ fn main() {
 }
 ```
 
-#### | pipe character 管道符
+##### | pipe character 管道符
 
 将左侧的程序的输出当作右侧程序的输入。
 
@@ -260,6 +261,7 @@ drwxrwxrwx 1 zl   zl      4096 Sep  9 09:05 variables
 >ref: https://stackoverflow.com/questions/604864/print-a-file-skipping-the-first-x-lines-in-bash
 
 pipe 配合 grep 使用：
+grep 用于抓取包含特定字段的行
 
 ```bash
 zl@LAPTOP-ZL ~/> curl --head --silent baidu.com
